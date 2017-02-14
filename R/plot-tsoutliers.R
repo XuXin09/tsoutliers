@@ -40,15 +40,19 @@ plot.tsoutliers <- function(x,
       args.lines.y <- args.lines.y[-id]
   }
 
-  fargs.linesyadj <- formals(plot.tsoutliers)$args.lines.yadj
-  efargs.linesyadj <- eval(fargs.linesyadj)
-  if (!identical(args.lines.yadj, efargs.linesyadj))
-  {
-    args.lines.yadj <- c(args.lines.yadj, efargs.linesyadj)
-    id <- which(duplicated(names(args.lines.yadj)))
-    if (length(id) > 0)
+  fargs.linesyadj <- formals(plot.tsoutliers)$
+    
+    
+    
+    
+  #efargs.linesyadj <- eval(fargs.linesyadj)
+  ##if (!identical(args.lines.yadj, efargs.linesyadj))
+  #{
+  #  args.lines.yadj <- c(args.lines.yadj, efargs.linesyadj)
+  #  id <- which(duplicated(names(args.lines.yadj)))
+  #  if (length(id) > 0)
       args.lines.yadj <- args.lines.yadj[-id]
-  }
+  #}
 
   fargs.linesef <- formals(plot.tsoutliers)$args.lines.effects
   efargs.linesef <- eval(fargs.linesef)
@@ -122,10 +126,10 @@ plot.tsoutliers <- function(x,
   #do.call("plot", args = c(list(x = cbind(x$y, x$adj)), args.plot))
   plot(cbind(x$y, x$yadj), plot.type ="single", 
     type = "n", xaxt = "n", yaxt = "n", xlab = "", ylab = "")
-  mtext(side = 3, text = "Original and adjusted series", adj = 0)
+  mtext(side = 3, text = "", adj = 0)
 
   do.call("lines", args = c(list(x = x$y), args.lines.y))
-  do.call("lines", args = c(list(x = x$yadj), args.lines.yadj))
+  #do.call("lines", args = c(list(x = x$yadj), args.lines.yadj))
 
   #if (y.axis)
   #{
@@ -146,9 +150,9 @@ plot.tsoutliers <- function(x,
   # looks thicker because of overlap between the lower side of top plot's box
   # and upper side of bottom plot's box
 
-  plot(x$effects, type = "n", xaxt = "n", yaxt = "n", xlab = "", ylab = "", bty = "u")
-  do.call("lines", args = c(list(x = x$effects), args.lines.effects))
-  mtext(side = 3, text = "Outlier effects", adj = 0, line = -1)
+  #plot(x$effects, type = "n", xaxt = "n", yaxt = "n", xlab = "", ylab = "", bty = "u")
+  #do.call("lines", args = c(list(x = x$effects), args.lines.effects))
+  #mtext(side = 3, text = "Outlier effects", adj = 0, line = -1)
 
   ##NOTE
   #by default the axis are created separately with option "lwd=0" because 
